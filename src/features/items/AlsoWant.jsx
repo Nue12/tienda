@@ -3,15 +3,68 @@ import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/mousewheel";
-import { Mousewheel, Pagination } from "swiper";
+import { Pagination } from "swiper";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronLeft,
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
+import { useSelector } from "react-redux";
+import {
+  selectEletronic,
+  selectJewelery,
+  selectMenWear,
+  selectWomenWear,
+} from "./itemsSlice";
 
-export const AlsoWant = () => {
+export const AlsoWant = ({ typeOfCategory }) => {
+  const itemStatus = useSelector((state) => state.items.status);
+
   const swiperRef = useRef();
+
+  let items;
+  switch (typeOfCategory) {
+    case "men's clothing":
+      items = useSelector(selectMenWear);
+      break;
+    case "women's clothing":
+      items = useSelector(selectWomenWear);
+      break;
+    case "electronics":
+      items = useSelector(selectEletronic);
+      break;
+    case "jewelery":
+      items = useSelector(selectJewelery);
+  }
+
+  let content;
+  if (itemStatus === "loading") {
+    content = <Loading text="loading..." />;
+  } else if (itemStatus === "succeeded") {
+    content = items.map((item) => (
+      <SwiperSlide key={item.id}>
+        <div className=" w-[170px] phmd:w-[185px] shadow-itemBox my-1 p-1 phmd:p-[10px] sm:p-5 sm:w-72 group cursor-pointer">
+          <div className=" h-60 overflow-hidden">
+            <img
+              src={item.image}
+              alt="an image"
+              className=" w-40 mx-auto group-hover:w-44 transition-width duration-200 ease-in-out"
+            />
+          </div>
+          <div className="mt-2">
+            <p className=" pr-10 text-ellipsis whitespace-nowrap overflow-hidden">
+              {item.title}
+            </p>
+            <span>{item.category}</span>
+            <p>${item.price}</p>
+          </div>
+        </div>
+      </SwiperSlide>
+    ));
+  } else if (itemStatus === "failed") {
+    content = <div>{error}</div>;
+  }
+
   return (
     <div className=" pt-5 pl-5 relative">
       <Swiper
@@ -25,8 +78,7 @@ export const AlsoWant = () => {
         onSwiper={(swiper) => (swiperRef.current = swiper)}
         spaceBetween={20}
         slidesPerView={2}
-        mousewheel
-        modules={[Pagination, Mousewheel]}
+        modules={[Pagination]}
         pagination={{ clickable: true }}
         className="py-12"
       >
@@ -44,70 +96,7 @@ export const AlsoWant = () => {
             <FontAwesomeIcon icon={faChevronRight} />
           </button>
         </div>
-        <SwiperSlide>
-          <div className=" w-[170px] phmd:w-[185px] shadow-itemBox my-1 p-1 phmd:p-[10px] sm:p-5 sm:w-72 group cursor-pointer">
-            <div className=" h-60 overflow-hidden">
-              <img
-                src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
-                alt="an image"
-                className=" w-40 mx-auto group-hover:w-44 transition-width duration-200 ease-in-out"
-              />
-            </div>
-            <div className="mt-2">
-              <p>Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops</p>
-              <span>men's clothing</span>
-              <p>$109.95</p>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className=" w-[170px] phmd:w-[185px] shadow-itemBox my-1 p-1 phmd:p-[10px] sm:p-5 sm:w-72 group cursor-pointer">
-            <div className=" h-60 overflow-hidden">
-              <img
-                src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
-                alt="an image"
-                className=" w-40 mx-auto group-hover:w-44 transition-width duration-200 ease-in-out"
-              />
-            </div>
-            <div className="mt-2">
-              <p>Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops</p>
-              <span>men's clothing</span>
-              <p>$109.95</p>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className=" w-[170px] phmd:w-[185px] shadow-itemBox my-1 p-1 phmd:p-[10px] sm:p-5 sm:w-72 group cursor-pointer">
-            <div className=" h-60 overflow-hidden">
-              <img
-                src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
-                alt="an image"
-                className=" w-40 mx-auto group-hover:w-44 transition-width duration-200 ease-in-out"
-              />
-            </div>
-            <div className="mt-2">
-              <p>Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops</p>
-              <span>men's clothing</span>
-              <p>$109.95</p>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className=" w-[170px] phmd:w-[185px] shadow-itemBox my-1 p-1 phmd:p-[10px] sm:p-5 sm:w-72 group cursor-pointer">
-            <div className=" h-60 overflow-hidden">
-              <img
-                src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
-                alt="an image"
-                className=" w-40 mx-auto group-hover:w-44 transition-width duration-200 ease-in-out"
-              />
-            </div>
-            <div className="mt-2">
-              <p>Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops</p>
-              <span>men's clothing</span>
-              <p>$109.95</p>
-            </div>
-          </div>
-        </SwiperSlide>
+        {content}
       </Swiper>
     </div>
   );

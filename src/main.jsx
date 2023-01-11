@@ -4,6 +4,9 @@ import App from "./App";
 import "./index.css";
 import store from "./app/store";
 import { Provider } from "react-redux";
+import { fetchItems } from "./features/items/itemsSlice";
+
+store.dispatch(fetchItems());
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

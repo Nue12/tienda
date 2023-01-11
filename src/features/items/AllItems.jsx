@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import { Loading } from "../components/loading";
 import { ItemExcerpt } from "./itemExcerpt";
 import {
-  fetchItems,
   selectEletronic,
   selectJewelery,
   selectMenWear,
@@ -11,14 +10,7 @@ import {
 } from "./itemsSlice";
 
 export const AllItems = ({ typeOfItem }) => {
-  const dispatch = useDispatch();
   const itemStatus = useSelector((state) => state.items.status);
-
-  useEffect(() => {
-    if (itemStatus === "idle") {
-      dispatch(fetchItems());
-    }
-  }, [itemStatus, dispatch]);
 
   let items;
   switch (typeOfItem) {
@@ -41,13 +33,15 @@ export const AllItems = ({ typeOfItem }) => {
   if (itemStatus === "loading") {
     content = <Loading text="loading..." />;
   } else if (itemStatus === "succeeded") {
-    content = items.map((item) => <ItemExcerpt item={item} key={item.id} />);
+    content = items.map((item) => (
+      <ItemExcerpt typeOfItem={typeOfItem} item={item} key={item.id} />
+    ));
   } else if (itemStatus === "failed") {
     content = <div>{error}</div>;
   }
 
   return (
-    <section className=" mt-24 px-4">
+    <section className=" mt-24 sm:px-4">
       <h1 className="ml-5">{typeOfItem}</h1>
       <section className=" flex justify-around flex-wrap my-5">
         {content}

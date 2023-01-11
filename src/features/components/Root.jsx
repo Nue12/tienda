@@ -9,11 +9,9 @@ import { Test } from "../items/test";
 export const Root = () => {
   return (
     <>
-      <NavBar />
       <Hero />
       <LinkTo />
       <AllItems typeOfItem="electronics" />
-      <Footer />
     </>
   );
 };

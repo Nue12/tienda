@@ -38,7 +38,12 @@ const itemsSlice = createSlice({
 export const selectAllItems = (state) => state.items.items;
 export const selectMenWear = (state) => {
   // state.items.items.filter((item) => item.category === "men's clothing");
-  return state.items.items.filter((item) => item.category === "men's clothing");
+  const menWear = state.items.items.filter(
+    (item) => item.category === "men's clothing"
+  );
+  console.log(state.items.items);
+
+  return menWear;
 };
 export const selectWomenWear = (state) => {
   return state.items.items.filter(
@@ -50,6 +55,12 @@ export const selectEletronic = (state) => {
 };
 export const selectJewelery = (state) => {
   return state.items.items.filter((item) => item.category === "jewelery");
+};
+export const selectItemById = (state, itemId = 3) => {
+  const selectById = state.items.items.find((item) => item.id === itemId);
+  // console.log(selectById);
+  console.log(state.items.items);
+  return selectById;
 };
 
 export default itemsSlice.reducer;
