@@ -16,9 +16,11 @@ import {
   selectMenWear,
   selectWomenWear,
 } from "./itemsSlice";
+import { useNavigate } from "react-router-dom";
 
 export const AlsoWant = ({ typeOfCategory }) => {
   const itemStatus = useSelector((state) => state.items.status);
+  const navigate = useNavigate();
 
   const swiperRef = useRef();
 
@@ -43,7 +45,12 @@ export const AlsoWant = ({ typeOfCategory }) => {
   } else if (itemStatus === "succeeded") {
     content = items.map((item) => (
       <SwiperSlide key={item.id}>
-        <div className=" w-[170px] phmd:w-[185px] shadow-itemBox my-1 p-1 phmd:p-[10px] sm:p-5 sm:w-72 group cursor-pointer">
+        <div
+          className=" w-[170px] phmd:w-[185px] shadow-itemBox my-1 p-1 phmd:p-[10px] sm:p-5 sm:w-72 group cursor-pointer"
+          onClick={() => {
+            navigate(`/${item.id}`);
+          }}
+        >
           <div className=" h-60 overflow-hidden">
             <img
               src={item.image}
