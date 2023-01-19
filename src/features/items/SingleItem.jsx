@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Loading } from "../components/loading";
@@ -7,6 +7,7 @@ import { selectItemById } from "./itemsSlice";
 import { SizeDiv } from "./SizeDiv";
 
 export const SingleItem = () => {
+  const [sizeDiv, setSizeDiv] = useState(false);
   const { itemId } = useParams();
   const item = useSelector((state) => selectItemById(state, Number(itemId)));
   const itemStatus = useSelector((state) => state.items.status);
@@ -30,7 +31,7 @@ export const SingleItem = () => {
                 <h2>Description</h2>
                 <p className=" pl-5 leading-6 sm:text-lg">{item.description}</p>
               </div>
-              <SizeDiv />
+              {item.category.includes("clothing") && <SizeDiv />}
             </div>
           </div>
           <div className=" my-3 sm:w-3/6">
@@ -39,7 +40,7 @@ export const SingleItem = () => {
         </div>
         {/* size */}
         <div className=" sm:hidden">
-          <SizeDiv />
+          {item.category.includes("clothing") && <SizeDiv />}
         </div>
         {/* description */}
         <div className=" my-14 sm:hidden">
