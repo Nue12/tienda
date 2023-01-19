@@ -2,8 +2,8 @@ import React from "react";
 
 export default function SearchItems({ itemsArray }) {
   const renderSearchItem = itemsArray.map((item) => (
-    <div className=" w-52 p-5 flex flex-col items-center" key={item.id}>
-      <div className=" p-3 bg-white">
+    <div className=" w-44 p-4 " key={item.id}>
+      <div>
         <img src={item.image} alt="item" className=" w-28" />
       </div>
       <div>
@@ -15,7 +15,7 @@ export default function SearchItems({ itemsArray }) {
   ));
   return (
     <section className=" flex bg-stone-100 absolute top-20 w-full">
-      <div className=" flex w-[850px] m-auto">
+      <div className=" flex w-[890px] m-auto flex-wrap">
         {renderSearchItem}
         {/* <div className=" w-52 p-5 flex flex-col items-center">
           <div className=" p-3 bg-white">

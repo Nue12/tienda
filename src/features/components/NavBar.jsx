@@ -17,7 +17,6 @@ export const NavBar = () => {
   const [itemsArray, setItemsArray] = useState([]);
   const [searchTab, setSearchTab] = useState(false);
   const [menu, setMenu] = useState(false);
-  const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
     window.document.addEventListener("wheel", (event) => {
@@ -30,6 +29,14 @@ export const NavBar = () => {
       }
     });
   }, [mouseWheel]);
+
+  const searchInput = document.getElementById("searchInput");
+
+  if (searchInput) {
+    if (!searchTab) {
+      searchInput.value = "";
+    }
+  }
 
   const items = useSelector(selectAllItems);
 
@@ -47,7 +54,7 @@ export const NavBar = () => {
   function searchAlgo(e) {
     updateDebounceText(e.target.value);
   }
-
+  console.log(searchTab);
   function debounce(cb, delay = 1000) {
     let timer;
     return (...args) => {
@@ -57,9 +64,6 @@ export const NavBar = () => {
       }, delay);
     };
   }
-
-  // {
-  // }
 
   console.log(itemsArray);
 
@@ -111,13 +115,13 @@ export const NavBar = () => {
             <FontAwesomeIcon
               icon={faBars}
               className="text-xl sm:hidden"
-              onClick={() => setMenu((menu) => !menu)}
+              onClick={() => setMenu((preMenu) => !preMenu)}
             />
           </div>
         </div>
 
         {/* searchItem absolute */}
-        {itemsArray && <SearchItems itemsArray={itemsArray} />}
+        {searchTab && <SearchItems itemsArray={itemsArray} />}
 
         {/* search absolute */}
         <div
@@ -126,8 +130,8 @@ export const NavBar = () => {
           } inset-x-0 bg-white transition-all duration-500 p-5 flex justify-between items-center space-x-5`}
         >
           <input
-            type="search"
-            value={{}}
+            type="text"
+            id="searchInput"
             className=" placeholder:text-black placeholder:text-center p-2 rounded-full bg-[#D9D9D9] w-full outline-none"
             placeholder="search the item"
             onKeyUp={(e) => searchAlgo(e)}
