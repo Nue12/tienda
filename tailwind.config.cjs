@@ -10,6 +10,7 @@ module.exports = {
       screens: {
         phsm: "300px",
         phmd: "410px",
+        tablet: "900px",
       },
       boxShadow: {
         itemBox: "rgba(149, 157, 165, 0.2) 0px 8px 24px",

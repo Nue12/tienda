@@ -15,6 +15,7 @@ import WomenClothing from "./features/components/WomenClothing";
 import Electronic from "./features/components/Electronic";
 import Jewelery from "./features/components/Jewelery";
 import SearchItems from "./features/components/SearchItems";
+import Bag from "./features/components/Bag";
 // import { library } from "@fortawesome/fontawesome-svg-core";
 // import { fab } from "@fortawesome/free-brands-svg-icons";
 // import { faCheckSquare, faCoffee } from "@fortawesome/free-solid-svg-icons";
@@ -59,7 +60,7 @@ function App() {
   return (
     <>
       <NavBar />
-      <RouterProvider router={router} />;
+      <RouterProvider router={router} />
       <Footer />
     </>
   );

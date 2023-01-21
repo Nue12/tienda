@@ -1,3 +1,7 @@
 body {
   margin: auto;
 }
+
+.icon {
+  cursor: pointer;
+}

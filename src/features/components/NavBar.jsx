@@ -11,6 +11,11 @@ import {
 import { useSelector } from "react-redux";
 import { selectAllItems } from "../items/itemsSlice";
 import SearchItems from "./SearchItems";
+import heart from "../../../public/heart.svg";
+import cart from "../../../public/cart.svg";
+import profile from "../../../public/profile.svg";
+import search from "../../../public/search.svg";
+import hambugerMenu from "../../../public/hamburger-menu.svg";
 
 export const NavBar = () => {
   const [mouseWheel, setMouseWheel] = useState(true);
@@ -68,7 +73,7 @@ export const NavBar = () => {
   console.log(itemsArray);
 
   return (
-    <nav className=" relative z-50 ">
+    <nav className=" relative z-50 max-w-7xl ">
       <div
         className={`flex items-center justify-between fixed shadow-itemBox ${
           !mouseWheel ? "-translate-y-24" : ""
@@ -95,7 +100,27 @@ export const NavBar = () => {
 
           {/* Icon */}
           <div className=" flex space-x-2 phsm:space-x-4 sm:space-x-6 items-center ">
-            <FontAwesomeIcon
+            <img
+              src={search}
+              alt="icon"
+              className=" w-7 icon"
+              onClick={() => setSearchTab((searchTab) => !searchTab)}
+            />
+            <img
+              src={profile}
+              alt="icon"
+              className=" w-7 icon hidden sm:block"
+            />
+            <img src={heart} alt="icon" className=" w-7 icon" />
+            <img src={cart} alt="icon" className=" w-7 icon" />
+            <img
+              src={hambugerMenu}
+              alt="icon"
+              className=" w-7 icon sm:hidden"
+              onClick={() => setMenu((preMenu) => !preMenu)}
+            />
+
+            {/* <FontAwesomeIcon
               icon={faSearch}
               className="text-xl cursor-pointer"
               onClick={() => setSearchTab((searchTab) => !searchTab)}
@@ -116,7 +141,7 @@ export const NavBar = () => {
               icon={faBars}
               className="text-xl sm:hidden"
               onClick={() => setMenu((preMenu) => !preMenu)}
-            />
+            /> */}
           </div>
         </div>
 
