@@ -1,13 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faBars,
-  faHeart,
-  faSearch,
-  faShoppingCart,
-  faTimes,
-  faUserCircle,
-} from "@fortawesome/free-solid-svg-icons";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { selectAllItems } from "../items/itemsSlice";
 import SearchItems from "./SearchItems";
@@ -16,6 +7,7 @@ import cart from "../../../public/cart.svg";
 import profile from "../../../public/profile.svg";
 import search from "../../../public/search.svg";
 import hambugerMenu from "../../../public/hamburger-menu.svg";
+import cross from "../../../public/cross.svg";
 
 export const NavBar = () => {
   const [mouseWheel, setMouseWheel] = useState(true);
@@ -59,7 +51,6 @@ export const NavBar = () => {
   function searchAlgo(e) {
     updateDebounceText(e.target.value);
   }
-  console.log(searchTab);
   function debounce(cb, delay = 1000) {
     let timer;
     return (...args) => {
@@ -70,8 +61,6 @@ export const NavBar = () => {
     };
   }
 
-  console.log(itemsArray);
-
   return (
     <nav className=" relative z-50 max-w-7xl ">
       <div
@@ -81,24 +70,6 @@ export const NavBar = () => {
       >
         <div className="flex w-full items-center justify-between phsm:px-3 sm:px-5 max-w-7xl mx-auto">
           <img src="../../../public/Logo.svg" alt="logo" />
-          {/* Icon Search */}
-          {/* <div className="hidden sm:block w-72 md:w-96 relative">
-            <FontAwesomeIcon
-              icon={faSearch}
-              className=" text-xl sm:absolute top-2.5 left-5"
-              onClick={() => setSearchTab((searchTab) => !searchTab)}
-            />
-            <input
-              type="text"
-              className=" placeholder:text-center focus:outline-none px-12 py-2 rounded-full bg-[#f2f2f2] hover:bg-[#e5e5e5] w-full"
-              placeholder="search the item"
-              onKeyUp={(e) => {
-                searchAlgo(e);
-              }}
-            />
-          </div> */}
-
-          {/* Icon */}
           <div className=" flex space-x-2 phsm:space-x-4 sm:space-x-6 items-center ">
             <img
               src={search}
@@ -106,42 +77,23 @@ export const NavBar = () => {
               className=" w-7 icon"
               onClick={() => setSearchTab((searchTab) => !searchTab)}
             />
-            <img
-              src={profile}
-              alt="icon"
-              className=" w-7 icon hidden sm:block"
-            />
+            <a href="sign_in">
+              <img
+                src={profile}
+                alt="icon"
+                className=" w-7 icon hidden sm:block"
+              />
+            </a>
             <img src={heart} alt="icon" className=" w-7 icon" />
-            <img src={cart} alt="icon" className=" w-7 icon" />
+            <a href="./cart">
+              <img src={cart} alt="icon" className=" w-7 icon" />
+            </a>
             <img
               src={hambugerMenu}
               alt="icon"
               className=" w-7 icon sm:hidden"
               onClick={() => setMenu((preMenu) => !preMenu)}
             />
-
-            {/* <FontAwesomeIcon
-              icon={faSearch}
-              className="text-xl cursor-pointer"
-              onClick={() => setSearchTab((searchTab) => !searchTab)}
-            />
-            <FontAwesomeIcon
-              icon={faUserCircle}
-              className="text-xl md:text-2xl hidden sm:block cursor-pointer"
-            />
-            <FontAwesomeIcon
-              icon={faHeart}
-              className="text-xl md:text-2xl cursor-pointer"
-            />
-            <FontAwesomeIcon
-              icon={faShoppingCart}
-              className="text-xl md:text-2xl cursor-pointer"
-            />
-            <FontAwesomeIcon
-              icon={faBars}
-              className="text-xl sm:hidden"
-              onClick={() => setMenu((preMenu) => !preMenu)}
-            /> */}
           </div>
         </div>
 
@@ -181,9 +133,10 @@ export const NavBar = () => {
             }`}
           >
             <div className=" absolute right-5">
-              <FontAwesomeIcon
-                icon={faTimes}
-                className="text-xl"
+              <img
+                src={cross}
+                alt="icon"
+                className="icon w-7"
                 onClick={() => setMenu((menu) => !menu)}
               />
             </div>

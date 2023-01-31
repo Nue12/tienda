@@ -1,14 +1,9 @@
 import React, { useRef } from "react";
-import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/mousewheel";
 import { Pagination } from "swiper";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faChevronLeft,
-  faChevronRight,
-} from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux";
 import {
   selectEletronic,
@@ -17,6 +12,8 @@ import {
   selectWomenWear,
 } from "./itemsSlice";
 import { useNavigate } from "react-router-dom";
+import leftArrow from "../../../public/left-arrow.svg";
+import rightArrow from "../../../public/right-arrow.svg";
 
 export const AlsoWant = ({ typeOfCategory }) => {
   const itemStatus = useSelector((state) => state.items.status);
@@ -91,16 +88,16 @@ export const AlsoWant = ({ typeOfCategory }) => {
       >
         <div className=" absolute top-0 right-2 md:right-5 lg:right-14 z-50">
           <button
-            className=" m-1 border-2 border-black h-10 w-10"
+            className=" m-1 h-10 w-10"
             onClick={() => swiperRef.current.slidePrev()}
           >
-            <FontAwesomeIcon icon={faChevronLeft} />
+            <img src={leftArrow} alt="icon" className=" w-10" />
           </button>
           <button
-            className=" m-1 border-2 border-black h-10 w-10"
+            className=" m-1 h-10 w-10"
             onClick={() => swiperRef.current.slideNext()}
           >
-            <FontAwesomeIcon icon={faChevronRight} />
+            <img src={rightArrow} alt="icon" className="w-10" />
           </button>
         </div>
         {content}

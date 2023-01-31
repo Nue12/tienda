@@ -2,7 +2,6 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const ITEMS_URL = "https://fakestoreapi.com/products";
-const MenClothing_Url = "https://fakestoreapi.com/products/category/jewelery";
 
 const initialState = {
   items: [],
@@ -37,11 +36,9 @@ const itemsSlice = createSlice({
 
 export const selectAllItems = (state) => state.items.items;
 export const selectMenWear = (state) => {
-  // state.items.items.filter((item) => item.category === "men's clothing");
   const menWear = state.items.items.filter(
     (item) => item.category === "men's clothing"
   );
-  console.log(state.items.items);
 
   return menWear;
 };
@@ -58,8 +55,6 @@ export const selectJewelery = (state) => {
 };
 export const selectItemById = (state, itemId = 3) => {
   const selectById = state.items.items.find((item) => item.id === itemId);
-  // console.log(selectById);
-  console.log(state.items.items);
   return selectById;
 };
 

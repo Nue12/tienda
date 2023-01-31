@@ -1,5 +1,3 @@
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
 export const SizeDiv = () => {
@@ -59,17 +57,6 @@ export const SizeDiv = () => {
             XL
           </label>
         </div>
-      </div>
-      <div className=" my-4 flex space-x-3">
-        <button className=" text-white text-center w-2/3 bg-black py-4">
-          Add to Cart
-        </button>
-        <button className=" bg-black py-3 w-1/3">
-          <FontAwesomeIcon
-            icon={faHeart}
-            className="text-xl text-white md:text-2xl"
-          />
-        </button>
       </div>
     </section>
   );

@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-export const ItemExcerpt = ({ item, typeOfItem }) => {
+export const ItemExcerpt = ({ item }) => {
   const navigate = useNavigate();
   return (
     <div

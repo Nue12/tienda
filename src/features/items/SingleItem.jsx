@@ -5,13 +5,16 @@ import { Loading } from "../components/loading";
 import { AlsoWant } from "./AlsoWant";
 import { selectItemById } from "./itemsSlice";
 import { SizeDiv } from "./SizeDiv";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import heart from "../../../public/heart.svg";
+import redHeart from "../../../public/red_heart.svg";
 
 export const SingleItem = () => {
-  const [sizeDiv, setSizeDiv] = useState(false);
+  const [favorite, setFavorite] = useState(false);
   const { itemId } = useParams();
   const item = useSelector((state) => selectItemById(state, Number(itemId)));
   const itemStatus = useSelector((state) => state.items.status);
-  console.log(itemStatus);
   if (itemStatus === "loading") {
     return <Loading text="loading..." />;
   }
@@ -32,6 +35,21 @@ export const SingleItem = () => {
                 <p className=" pl-5 leading-6 sm:text-lg">{item.description}</p>
               </div>
               {item.category.includes("clothing") && <SizeDiv />}
+              <div className=" my-4 flex space-x-3">
+                <button className=" text-white text-center w-2/3 bg-black py-4">
+                  Add to Cart
+                </button>
+                <button
+                  className=" px-10 py-3 w-1/3"
+                  onClick={() => setFavorite((preV) => !preV)}
+                >
+                  <img
+                    src={favorite ? redHeart : heart}
+                    alt="icon"
+                    className="w-7 icon"
+                  />
+                </button>
+              </div>
             </div>
           </div>
           <div className=" my-3 sm:w-3/6">

@@ -74,8 +74,8 @@ export default function Bag() {
         </div>
         <div
           className={`${
-            promoInput && "h-9"
-          } h-0 overflow-hidden transition-all duration-150 ease-in`}
+            !promoInput && "h-0"
+          } h-9 overflow-hidden transition-all duration-150 ease-in`}
         >
           <input
             type="text"
