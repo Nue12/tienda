@@ -1,6 +1,5 @@
-import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
+import arrow from "../../../public/arrow.svg";
 
 export const Footer = () => {
   const [suppOpen, setSuppOpen] = useState(false);
@@ -21,9 +20,11 @@ export const Footer = () => {
             onClick={() => setSuppOpen((preSupp) => !preSupp)}
           >
             <p className=" font-semibold">SUPPORT</p>
-            <FontAwesomeIcon
-              icon={suppOpen ? faCaretUp : faCaretDown}
-              className={` $ md:hidden`}
+            <img
+              src={arrow}
+              className={`md:hidden w-10 ${
+                suppOpen && "rotate-180"
+              } transition-all duration-150`}
             />
           </div>
           <ul
@@ -44,9 +45,11 @@ export const Footer = () => {
             onClick={() => setAboutOpen((preAbout) => !preAbout)}
           >
             <p className=" font-semibold">About</p>
-            <FontAwesomeIcon
-              icon={aboutOpen ? faCaretUp : faCaretDown}
-              className={` $ md:hidden`}
+            <img
+              src={arrow}
+              className={`md:hidden w-10 ${
+                aboutOpen && "rotate-180"
+              } transition-all duration-150`}
             />
           </div>
           <ul

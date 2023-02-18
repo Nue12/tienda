@@ -5,8 +5,6 @@ import { Loading } from "../components/loading";
 import { AlsoWant } from "./AlsoWant";
 import { selectItemById } from "./itemsSlice";
 import { SizeDiv } from "./SizeDiv";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import heart from "../../../public/heart.svg";
 import redHeart from "../../../public/red_heart.svg";
 
