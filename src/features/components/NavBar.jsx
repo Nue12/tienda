@@ -8,6 +8,7 @@ import profile from "../../../public/profile.svg";
 import search from "../../../public/search.svg";
 import hambugerMenu from "../../../public/hamburger-menu.svg";
 import cross from "../../../public/cross.svg";
+import logo from "../../../public/Logo.svg";
 
 export const NavBar = () => {
   const [mouseWheel, setMouseWheel] = useState(true);
@@ -69,7 +70,7 @@ export const NavBar = () => {
         } top-0 bg-white transition-all duration-200 ease-in-out w-full phsm:py-3 sm:py-5`}
       >
         <div className="flex w-full items-center justify-between phsm:px-3 sm:px-5 max-w-7xl mx-auto">
-          <img src="../../../public/Logo.svg" alt="logo" />
+          <img src={logo} alt="logo" />
           <div className=" flex space-x-2 phsm:space-x-4 sm:space-x-6 items-center ">
             <img
               src={search}
